@@ -125,7 +125,7 @@ function dashboardPage({ fragment = false } = {}) {
       </div>
 
       <!-- Settings Panel -->
-      <div class="panel" id="settings-panel" hx-get="/ui/settings" hx-trigger="load" hx-swap="innerHTML">
+      <div class="panel panel-wide" id="settings-panel" hx-get="/ui/settings" hx-trigger="load" hx-swap="innerHTML">
         <h3>Settings</h3>
         <p class="loading">Loading…</p>
       </div>
