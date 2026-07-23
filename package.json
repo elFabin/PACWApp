@@ -1,0 +1,29 @@
+{
+  "name": "pacwapp",
+  "version": "1.0.0",
+  "description": "Palworld API Client WebApp (PACWApp for short) is an open source API Client for Palworld's REST API.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elFabin/PACWApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/elFabin/PACWApp/issues"
+  },
+  "homepage": "https://github.com/elFabin/PACWApp#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1"
+  }
+}
