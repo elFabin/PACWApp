@@ -139,10 +139,11 @@ router.post('/ui/announce', requireSession, express.urlencoded({ extended: false
 });
 
 router.post('/ui/kick', requireSession, express.urlencoded({ extended: false }), async (req, res) => {
-  const { userid, message } = req.body;
+  const { userid } = req.body;
+  const message = req.headers['hx-prompt'] || "Kicked by admin.";
   if (!userid) return res.send(html.errorFragment('User id is required'));
   try {
-    await apiFetch(req.session, '/kick', { method: 'POST', body: { userid, message: message || 'Kicked by admin' } });
+    const kickResponse = await apiFetch(req.session, '/kick', { method: 'POST', body: { userid, message: message || 'Kicked by admin' } });
     const players = await apiFetch(req.session, '/players');
     res.send(html.playersPanel(players?.players ?? players));
   } catch (err) {
@@ -151,7 +152,8 @@ router.post('/ui/kick', requireSession, express.urlencoded({ extended: false }),
 });
 
 router.post('/ui/ban', requireSession, express.urlencoded({ extended: false }), async (req, res) => {
-  const { userid, message } = req.body;
+  const { userid } = req.body;
+  const message = req.headers['hx-prompt'] || "Banned by admin.";
   if (!userid) return res.send(html.errorFragment('User id is required'));
   try {
     await apiFetch(req.session, '/ban', { method: 'POST', body: { userid, message: message || 'Banned by admin' } });

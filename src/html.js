@@ -228,21 +228,23 @@ function playersPanel(players) {
   const rows = list.length
     ? list
       .map((p) => {
-        const userId = escapeHtml(p.playerId ?? p.userId ?? p.userid);
+        const playerId = escapeHtml(p.playerId);
+        const userId = escapeHtml(p.userId);
         const playerName = escapeHtml(p.name);
         const level = escapeHtml(p.level);
 
         return `
         <tr>
           <td>${playerName}</td>
+          <td>${playerId}</td>
           <td>${userId}</td>
           <td>${level}</td>
           <td class="row-actions">
-            <form hx-post="/ui/kick" hx-target="#players-panel" hx-swap="innerHTML" hx-confirm="Kick ${playerName}?">
+            <form hx-post="/ui/kick" hx-target="#players-panel" hx-swap="innerHTML" hx-prompt="Kicking ${playerName}.\n\n Enter a reason (optional):">
               <input type="hidden" name="userid" value="${userId}">
               <button type="submit" class="btn-warn">Kick</button>
             </form>
-            <form hx-post="/ui/ban" hx-target="#players-panel" hx-swap="innerHTML" hx-confirm="Ban ${playerName}?">
+            <form hx-post="/ui/ban" hx-target="#players-panel" hx-swap="innerHTML" hx-prompt="Banning ${playerName}.\n\n Enter a reason (optional):">
               <input type="hidden" name="userid" value="${userId}">
               <button type="submit" class="btn-danger">Ban</button>
             </form>
@@ -261,6 +263,7 @@ function playersPanel(players) {
       <thead>
         <tr>
           <th>Name</th>
+          <th>Player ID</th>
           <th>User ID</th>
           <th>Level</th>
           <th></th>
